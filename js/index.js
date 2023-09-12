@@ -1,3 +1,29 @@
+let users = [];
+let user;
+
+function fetchUsers() {
+    return fetch('http://localhost:3000/users')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                console.log(data[i]);
+                let object = {...data[i]};
+                users.push(object);
+            }
+            console.log(`Users: ${users}`);
+            for (const u of users) {
+                console.log(u);
+            }
+            console.log(`Length: ${users.length}`);
+            user = users[Number.parseInt(Math.random() * users.length)];
+            console.log(`User: ${user}`);
+            console.log(`User: ${user.id}`);
+            console.log(`User: ${user.username}`);
+            console.log(users[6]);
+        });
+}
+
 
 
 
@@ -80,5 +106,7 @@ function displayBook(book) {
 
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('body').style.background = '#444';
+    console.log(fetchUsers());
     console.log(fetchBooks());
+    
 });
